@@ -12,6 +12,7 @@ djangorestframework = "*"
 djangorestframework-jwt = "*"
 django-cors-headers = "*"
 pillow = "*"
+django-rest-auth = {editable = true,version = "*"}
 
 [requires]
 python_version = "3.7"
