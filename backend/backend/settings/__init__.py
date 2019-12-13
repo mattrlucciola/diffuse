@@ -1,4 +1,6 @@
 from .base import *
 
-try   : from .local import *
-except: from .production import *
+if "/var/www/" not in __file__:
+    from .local import *
+else:
+    from .production import *
