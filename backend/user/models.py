@@ -27,7 +27,7 @@ class UserManager(models.Manager):
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-    return self._create_user(username, email, password, **extra_fields)
+        return self._create_user(username, email, password, **extra_fields)
     
     def get_by_natural_key(self, username):
         return self.get(username=username)
