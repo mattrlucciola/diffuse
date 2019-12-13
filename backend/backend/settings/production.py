@@ -1,5 +1,10 @@
+from os import environ
+from .base import DATABASES
+
 DEBUG = False
 ALLOWED_HOSTS = ["178.128.146.249", "diffcult.com"]
+DATABASES["USER"] = environ.get("diffuse_user")
+DATABASES["PASSWORD"] = environ.get("diffuse_pw")
 
 # make sure its empty
 CORS_ORIGIN_WHITELIST = (
