@@ -9,35 +9,6 @@ class UserManager(BaseUserManager):
     def get_by_natural_key(self, username):
         return self.get(username=username)
     
-    def create_user(self, username, password, **extra_fields):
-        """
-        Create and save a user with the given username, email, and password.
-        """
-        if not username:
-            raise ValueError('The given username must be set')
-
-        # normalize vital fields
-        username = self.model.normalize_username(username)
-
-        # create user obj
-        user = self.model(username=username, **extra_fields)
-
-        # set the pwd
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, username, password=None):
-        """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
-        """
-        user = self.create_user(username, password=password)
-        user.is_admin = True
-        user.save(using=self._db)
-
-        return user
-
 # start user class
 class CustomUser(AbstractUser):
     objects = UserManager()
