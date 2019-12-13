@@ -5,10 +5,42 @@ from djongo import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 # class UserManager(models.Manager):
-class UserManager(models.Manager):
+class UserManager(BaseUserManager):
     def get_by_natural_key(self, username):
         return self.get(username=username)
     
+    def create_user(self, username, email, password, **extra_fields):
+        """
+        Create and save a user with the given username, email, and password.
+        """
+        if not username:
+            raise ValueError('The given username must be set')
+        if not email:
+            raise ValueError('The given email must be set')
+
+        # normalize vital fields
+        email = self.normalize_email(email)
+        username = self.model.normalize_username(username)
+
+        # create user obj
+        user = self.model(username=username, email=email, **extra_fields)
+
+        # set the pwd
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, email='', password=None):
+        """
+        Creates and saves a superuser with the given email, date of
+        birth and password.
+        """
+        user = self.create_user(username, '', password=password)
+        user.is_admin = True
+        user.save(using=self._db)
+
+        return user
+
 # start user class
 class CustomUser(AbstractUser):
     objects = UserManager()
