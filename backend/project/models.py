@@ -5,7 +5,8 @@ from djongo import models
 from django.template.defaultfilters import slugify
 
 # model imports
-from user.models import CustomUser
+# from user.models import CustomUser
+from django.contrib.auth import get_user_model
 
 class ProjectManager(models.Manager):
     def get_by_natural_key(self, resource_id):
@@ -21,8 +22,8 @@ class Project(models.Model):
     content = models.ListField(name='content', blank=True, null=True, default=[])
 
     # relationships
-    user = models.ForeignKey(CustomUser, related_name='project', on_delete=models.CASCADE)
-    collaborators = models.ManyToManyField(CustomUser, related_name='collaborators', blank=True)
+    user = models.ForeignKey(get_user_model(), related_name='project', on_delete=models.CASCADE)
+    collaborators = models.ManyToManyField(get_user_model(), related_name='collaborators', blank=True)
 
     # saved/updated
     created_dt = models.DateTimeField(editable=False)

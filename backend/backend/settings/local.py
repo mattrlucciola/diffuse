@@ -5,11 +5,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "localhost"]
 
-if 1 == 1:
+if 1 == 0:
     from .base import DATABASES
     from os import environ
 
     ALLOWED_HOSTS.append("178.128.146.249")
+    ALLOWED_HOSTS.append("diffcult.com")
     DATABASES["USER"] = environ.get("diffuse_user")
     DATABASES["PASSWORD"] = environ.get("diffuse_pw")
 

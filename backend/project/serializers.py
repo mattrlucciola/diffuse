@@ -1,6 +1,5 @@
 # import model
 from .models import Project
-from user.models import CustomUser
 
 # import serializers
 from user.serializers import UserSerializer, CollaboratorsListingField, UserDetailField
@@ -13,7 +12,6 @@ class ContentSerializer(serializers.Serializer):
 
 class ProjectDetailSerializer(serializers.ModelSerializer):
     user = UserDetailField(read_only=True)
-    # collaborators = CollaboratorsListingField(many=True, read_only=False, queryset=CustomUser.objects.all())
     collaborators = CollaboratorsListingField(many=True, read_only=False, default=[], allow_null=True)
     content = ContentSerializer(many=True, default=[], allow_null=True)
 

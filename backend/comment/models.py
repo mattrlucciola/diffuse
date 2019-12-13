@@ -2,7 +2,8 @@
 from djongo import models
 
 # model imports
-from user.models import CustomUser
+# from user.models import CustomUser
+from django.contrib.auth import get_user_model
 from project.models import Project
 
 # Create your models here.
@@ -12,7 +13,7 @@ class Comment(models.Model):
     content = models.TextField()
 
     # relationships
-    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     
     # saved/updated

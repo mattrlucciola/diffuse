@@ -5,13 +5,14 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 # user imports
-from .models import CustomUser
+# from .models import CustomUser
+from django.contrib.auth import get_user_model
 from .forms  import CustomUserCreationForm, CustomUserChangeForm
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    model = CustomUser
+    model = get_user_model()
     list_display = ['username']
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(get_user_model(), CustomUserAdmin)
