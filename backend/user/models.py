@@ -9,37 +9,65 @@ class UserManager(BaseUserManager):
     def get_by_natural_key(self, username):
         return self.get(username=username)
     
-    def create_user(self, username, email, password, **extra_fields):
+    # def create_user(self, username, email, password, **extra_fields):
+    #     """
+    #     Create and save a user with the given username, email, and password.
+    #     """
+    #     # normalize vital fields
+    #     email = self.model.normalize_email(email)
+    #     username = self.model.normalize_username(username)
+    #     print('\n\nextra fields (below)')
+    #     print(email, username)
+    #     print(extra_fields)
+    #     print(**extra_fields)
+    #     print('extra fields (above)\n\n')
+    #     if not username:
+    #         raise ValueError('The given username must be set')
+    #     if not email:
+    #         raise ValueError('The given email must be set')
+        
+    #     # create user obj
+    #     user = self.model(username=username, email=email, **extra_fields)
+
+    #     # set the pwd
+    #     user.set_password(password)
+    #     user.save(using=self._db)
+    #     return user
+    
+    def create_user(self, username, password=None, **kwargs):
         """
-        Create and save a user with the given username, email, and password.
+        Creates and saves a User with the given username and password.
         """
+        print('\n\nuser, password')
+        print(username, password)
+        print('username, password\n\n')
         if not username:
-            raise ValueError('The given username must be set')
-        if not email:
-            raise ValueError('The given email must be set')
+            raise ValueError('Error: The User you want to create must have an username, try again')
+        # if not username:
+            # raise ValueError('Error: The User you want to create must have an username, try again')
 
-        # normalize vital fields
-        email = self.normalize_email(email)
-        username = self.model.normalize_username(username)
+        new_user = self.model(
+            username=self.model.normalize_username(username),
+            **kwargs
+        )
 
-        # create user obj
-        user = self.model(username=username, email=email, **extra_fields)
+        new_user.set_password(password)
+        new_user.save(using=self._db)
+        return new_user
 
-        # set the pwd
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, username, email='', password=None):
+    def create_superuser(self, username, password, **kwargs):
         """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
+        Creates and saves a superuser with the given username and password.
         """
-        user = self.create_user(username, '', password=password)
-        user.is_admin = True
-        user.save(using=self._db)
-
-        return user
+        new_user = self.create_user(
+            username,
+            password=password,
+            **kwargs,
+        )
+        new_user.staff = True
+        new_user.admin = True
+        new_user.save(using=self._db)
+        return new_user
 
 # start user class
 class CustomUser(AbstractUser):
@@ -51,7 +79,7 @@ class CustomUser(AbstractUser):
     phone = models.CharField(max_length=15, name='phone', blank=True, null=True)
     profile_picture = models.ImageField(verbose_name='profile_picture', name='profile_picture', width_field=300, null=True, blank=True)
     
-    USERNAME_FIELD = "username"
+    # USERNAME_FIELD = "username"
     # REQUIRED_FIELDS = ['username']
     
     # @property
@@ -74,35 +102,35 @@ class CustomUser(AbstractUser):
 #         if not user:
 #             raise ValueError('Error: The User you want to create must have an username, try again')
 
-#         my_user = self.model(
+#         new_user = self.model(
 #             user=self.model.normalize_username(user),
 #         )
 
-#         my_user.set_password(password)
-#         my_user.save(using=self._db)
-#         return my_user
+#         new_user.set_password(password)
+#         new_user.save(using=self._db)
+#         return new_user
 
 #     def create_staffuser(self, user, password):
 #         """
 #         Creates and saves a staff user with the given username and password.
 #         """
-#         my_user = self.create_user(
+#         new_user = self.create_user(
 #             user,
 #             password=password,
 #         )
-#         my_user.staff = True
-#         my_user.save(using=self._db)
-#         return my_user
+#         new_user.staff = True
+#         new_user.save(using=self._db)
+#         return new_user
 
 #     def create_superuser(self, user, password):
 #         """
 #         Creates and saves a superuser with the given username and password.
 #         """
-#         my_user = self.create_user(
+#         new_user = self.create_user(
 #             user,
 #             password=password,
 #         )
-#         my_user.staff = True
-#         my_user.admin = True
-#         my_user.save(using=self._db)
-#         return my_user
+#         new_user.staff = True
+#         new_user.admin = True
+#         new_user.save(using=self._db)
+#         return new_user
