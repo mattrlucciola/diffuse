@@ -5,7 +5,7 @@ from djongo import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 # class UserManager(models.Manager):
-class UserManager(BaseUserManager):
+class UserManager(models.Manager):
     def get_by_natural_key(self, username):
         return self.get(username=username)
     
