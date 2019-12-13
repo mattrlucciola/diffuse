@@ -2,7 +2,7 @@
 from djongo import models
 
 # django imports
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 
 # class UserManager(models.Manager):
 class UserManager(BaseUserManager):
@@ -34,8 +34,9 @@ class UserManager(BaseUserManager):
             password=password,
             **kwargs,
         )
-        new_user.staff = True
-        new_user.admin = True
+        new_user.is_superuser = True
+        new_user.is_staff = True
+        new_user.is_admin = True
         new_user.save(using=self._db)
         return new_user
 
