@@ -15,8 +15,8 @@ django-cors-headers = "*"
 pillow = "*"
 django-rest-auth = {editable = true,version = "*"}
 six = "*"
-django = "==2.2"
 gunicorn = "*"
+django = "==2.2.8"
 
 [requires]
 python_version = "3.7"

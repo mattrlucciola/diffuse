@@ -15,7 +15,10 @@ from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+print('\n\nlook here')
+print(BASE_DIR)
+print(f"{os.path.dirname(BASE_DIR)}/client/static/")
+print('end\n\n')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
