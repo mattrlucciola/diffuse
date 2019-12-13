@@ -4,15 +4,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
+v = {editable = true,version = "*"}
 
 [packages]
-django = "*"
 djongo = "*"
 djangorestframework = "*"
 djangorestframework-jwt = "*"
 django-cors-headers = "*"
 pillow = "*"
 django-rest-auth = {editable = true,version = "*"}
+six = "*"
+django = "==2.2"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

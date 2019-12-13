@@ -22,11 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'sik7-u%y&@fntqsi0$_64^zt-z6k9miel%v(lv93s)yy_=$j6u'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -83,13 +78,6 @@ LOGIN_URL = 'login'
 
 ##################################################################################################################
 ###################################################### CORS ######################################################
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000', # commented out
-    # 'http://localhost:8000',
-#     # "*"
-)
-
-# CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
 ###################################################### CORS ######################################################
 ##################################################################################################################
@@ -179,8 +167,8 @@ CORS_REPLACE_HTTPS_REFERER      = False
 HOST_SCHEME                     = "http://"
 SECURE_PROXY_SSL_HEADER         = None
 SECURE_SSL_REDIRECT             = False
-SESSION_COOKIE_SECURE           = False # true
-CSRF_COOKIE_SECURE              = False # true
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
 # CSRF_USE_SESSIONS               = True
 # CSRF_COOKIE_HTTPONLY            = False
 SECURE_HSTS_SECONDS             = None
