@@ -127,10 +127,10 @@ DATABASES = {
 if "/www/" in BASE_DIR:
 
     from os import environ
-    DATABASES["USER"] = environ.get("diffuse_user")
-    DATABASES["PASSWORD"] = environ.get("diffuse_pw")
-    DATABASES["HOST"] = '127.0.0.1'
-    DATABASES["PORT"] = '27017'
+    DATABASES["default"]["USER"] = environ.get("diffuse_user")
+    DATABASES["default"]["PASSWORD"] = environ.get("diffuse_pw")
+    DATABASES["default"]["HOST"] = '127.0.0.1'
+    DATABASES["default"]["PORT"] = '27017'
     print(DATABASES)
 
 # Password validation
