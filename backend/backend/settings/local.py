@@ -5,14 +5,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "localhost"]
 
-if 1 == 0:
-    from .base import DATABASES
-    from os import environ
-
+from .base import BASE_DIR
+if "/www/" in BASE_DIR:
     ALLOWED_HOSTS.append("178.128.146.249")
     ALLOWED_HOSTS.append("diffcult.com")
-    DATABASES["USER"] = environ.get("diffuse_user")
-    DATABASES["PASSWORD"] = environ.get("diffuse_pw")
 
 # not sure which one to whitelist, 3000 or 8000
 CORS_ORIGIN_WHITELIST = (

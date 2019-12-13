@@ -124,6 +124,10 @@ DATABASES = {
     }
 }
 
+if "/www/" in BASE_DIR:
+    from os import environ
+    DATABASES["USER"] = environ.get("diffuse_user")
+    DATABASES["PASSWORD"] = environ.get("diffuse_pw")
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
