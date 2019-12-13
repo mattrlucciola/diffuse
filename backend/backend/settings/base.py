@@ -131,7 +131,6 @@ if "/www/" in BASE_DIR:
     DATABASES["default"]["PASSWORD"] = environ.get("diffuse_pw")
     DATABASES["default"]["HOST"] = '127.0.0.1'
     DATABASES["default"]["PORT"] = 27017
-    print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
