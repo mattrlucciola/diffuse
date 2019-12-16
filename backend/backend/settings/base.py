@@ -132,7 +132,7 @@ if "/www/" in BASE_DIR:
 
     from os import environ
     DATABASES["default"]["USER"] = environ.get("diffuse_mongo_user")
-    DATABASES["default"]["PASSWORD"] = environ.get("diffuse_mongo_pw")
+    DATABASES["default"]["PASSWORD"] = environ.get("diffuse_mongo_pwd")
     DATABASES["default"]["HOST"] = '127.0.0.1'
     DATABASES["default"]["PORT"] = 27017
     print(DATABASES)
