@@ -172,11 +172,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(CLIENT_DIR,'build')# f"{os.path.dirname(BASE_DIR)}/client/build/"
-# print(BASE_DIR)
-# print(CLIENT_DIR)
-# print(STATIC_ROOT)
 STATICFILES_DIRS = (
     os.path.join(CLIENT_DIR, "build", "static"),  # update the STATICFILES_DIRS
 )
 
-CSRF_USE_SESSIONS = True
+# CSRF_USE_SESSIONS = True

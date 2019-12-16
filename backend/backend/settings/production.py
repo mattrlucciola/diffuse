@@ -11,10 +11,10 @@ SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT             = True
 
 # these four were commented out (below)
-SESSION_COOKIE_SECURE           = True
-CSRF_COOKIE_SECURE              = True
-CSRF_USE_SESSIONS               = True
-CSRF_COOKIE_HTTPONLY            = False
+# SESSION_COOKIE_SECURE           = True
+# CSRF_COOKIE_SECURE              = True
+# CSRF_USE_SESSIONS               = True
+# CSRF_COOKIE_HTTPONLY            = False
 # these four were commented out (above)
 
 SECURE_HSTS_SECONDS             = 1000000
