@@ -118,7 +118,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+ALLOWED_HOSTS = ["178.128.146.249", "diffcult.com", "0.0.0.0", "127.0.0.1", "localhost"]
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',

@@ -1,5 +1,4 @@
 DEBUG = False
-ALLOWED_HOSTS = ["178.128.146.249", "diffcult.com"]
 
 # make sure its empty
 CORS_ORIGIN_WHITELIST = (

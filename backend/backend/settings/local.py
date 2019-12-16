@@ -3,13 +3,6 @@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "localhost"]
-
-from .base import BASE_DIR
-if "/www/" in BASE_DIR:
-    ALLOWED_HOSTS.append("178.128.146.249")
-    ALLOWED_HOSTS.append("diffcult.com")
-
 # not sure which one to whitelist, 3000 or 8000
 CORS_ORIGIN_WHITELIST = (
     # 'http://localhost:3000', # commented out
