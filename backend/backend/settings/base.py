@@ -125,7 +125,9 @@ DATABASES = {
         'NAME': 'diffuse',
     }
 }
-
+print('base_dir here(below)')
+print(BASE_DIR)
+print('base_dir here(above)')
 if "/www/" in BASE_DIR:
 
     from os import environ
