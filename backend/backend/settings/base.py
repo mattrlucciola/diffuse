@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     
     # rest and api stuff
     'corsheaders',
@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'rest_auth',
     
     # my apps
-    'core',
     'user',
     'project',
+    # 'core',
     # 'comment',
     # 'history',
 ]
@@ -168,10 +168,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(CLIENT_DIR,'build')# f"{os.path.dirname(BASE_DIR)}/client/build/"
-STATICFILES_DIRS = (
-    os.path.join(CLIENT_DIR, "build", "static"),  # update the STATICFILES_DIRS
-)
+# STATICFILES_DIRS = (
+    # os.path.join(CLIENT_DIR, "build", "static"),  # update the STATICFILES_DIRS
+# )
 
 # CSRF_USE_SESSIONS = True
