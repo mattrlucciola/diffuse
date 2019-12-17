@@ -59,7 +59,18 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
         
         // save/partial update to database if its an existing project
         if (collaboratorsArr) {
+            // on create project: create a project entry in database with name: "untitled-${Date.now()}"
+            // on click in title, open the form to allow for local editing
+            // on typing, update the content in the form locally
+            // on blur or submit, check if name is duplicate > show an alert
+            // on blur or submit, check if name is duplicate > revert to old name
+            // on successful submit update the project name, slug, and resourceId
+            url = `/api/project/${requestBody['resource_id']}/`
+            delete requestBody['resource_id']
+            await Put(url, requestBody, getLsObj()['diffuse_jwt']);
+            ;
         }
+
         // exit the input
         setChangeTitleBool(()=>{return false})
     }
