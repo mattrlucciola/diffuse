@@ -6,6 +6,9 @@ from user.serializers import UserSerializer, CollaboratorsListingField, UserDeta
 from rest_framework import serializers
 from django.core import serializers as Serializers
 
+#fxns
+from django.template.defaultfilters import slugify
+
 class ContentSerializer(serializers.Serializer):
     name = serializers.CharField()
     midi = serializers.DictField()
@@ -44,6 +47,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
         collaborators = validated_data.pop('collaborators')
         instance.name = validated_data['name']
         instance.project_slug = validated_data['project_slug']
+        instance.resource_id = slugify(f"{self.context['request'].user}-{validated_data['name']}")
         instance.content = validated_data['content']
         instance.collaborators.set(collaborators)
         instance.save()

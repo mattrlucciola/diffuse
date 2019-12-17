@@ -5,7 +5,6 @@ from djongo import models
 from django.template.defaultfilters import slugify
 
 # model imports
-# from user.models import CustomUser
 from django.contrib.auth import get_user_model
 
 class ProjectManager(models.Manager):
@@ -38,5 +37,4 @@ class Project(models.Model):
         unique_together = ['user', 'project_slug', 'resource_id', 'created_dt']
         ordering = ['created_dt']
 
-    def __str__(self):
-        return "{}".format(self.resource_id)
+    def __str__(self): return f"{self.resource_id}"

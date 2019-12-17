@@ -12,13 +12,6 @@ class CollaboratorsListingField(serializers.Serializer):
     def to_internal_value(self, data):
         obj_id = data
         return User.objects.get(username=obj_id)
-# class CollaboratorsListingField(serializers.RelatedField):
-#     def to_representation(self, value):
-#         return value.username # figure out why this doesnt work {"id": value.id, "username": value.username}
-#         # return "{0}'username':'{1}','id':{2}{3}".format('{', value.username, value.id, '}') # figure out why this doesnt work {"id": value.id, "username": value.username}
-#     def to_internal_value(self, data):
-#         obj_id = data
-#         return User.objects.get(username=obj_id)
 class UserDetailField(serializers.RelatedField):
     def to_representation(self, value):
         return {"id": value.id, "username": value.username}
@@ -77,3 +70,13 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+    
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            if attr == 'password':
+                instance.set_password(value)
+            else:
+                setattr(instance, attr, value)
+        instance.set_password(validated_data['password'])
+        instance.save()
+        return instance

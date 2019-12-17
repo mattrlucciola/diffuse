@@ -11,10 +11,9 @@ User = get_user_model()
 
 # import permissions
 from .permissions import IsAdminUser, IsLoggedInUserOrAdmin
-# request.META["CSRF_COOKIE_USED"] = True
+
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsLoggedInUserOrAdmin]
     serializer_class = UserSerializer
     queryset = User.objects.all()
     search_fields  = ('first_name', 'last_name', 'username')
@@ -30,3 +29,6 @@ class UserViewSet(viewsets.ModelViewSet):
         elif self.action == 'list':
             permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
+
+    def put(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
