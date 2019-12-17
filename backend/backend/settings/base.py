@@ -16,7 +16,6 @@ from datetime import timedelta
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CLIENT_DIR = f"{os.path.dirname(BASE_DIR)}/client"
-# print(f"{os.path.dirname(BASE_DIR)}/client/")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -30,7 +29,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
     
     # rest and api stuff
     'corsheaders',
@@ -41,7 +39,6 @@ INSTALLED_APPS = [
     # my apps
     'user',
     'project',
-    # 'core',
     # 'comment',
     # 'history',
 ]
@@ -87,7 +84,6 @@ CORS_ALLOW_CREDENTIALS = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -163,15 +159,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(CLIENT_DIR,'build')# f"{os.path.dirname(BASE_DIR)}/client/build/"
-# STATICFILES_DIRS = (
-    # os.path.join(CLIENT_DIR, "build", "static"),  # update the STATICFILES_DIRS
-# )
-
-# CSRF_USE_SESSIONS = True
