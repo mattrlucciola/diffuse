@@ -70,7 +70,6 @@ export default function ProjectView({loggedIn, props}){
                 resJson && setAllProjectObjects(resJson);
                 setProjectObj(() => {return {...resJson}});
             } catch (e) {
-                console.log(e, '\n', e.message)
                 alert("Error in ProjectView: requesting", url, e)
             }
         }

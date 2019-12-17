@@ -4,9 +4,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-// modules 
-import axios from 'axios';
-
 // components
 import ProjectCollaboratorCard from './ProjectCollaboratorCard';
 
@@ -17,7 +14,6 @@ import {slugify} from '../../util/slugify';
 
 // start
 export default function ProjectNav({loggedIn, projectNavProps, saveProps, currentUsername}){
-    console.log(projectNavProps)
     // destructuring variables
     const {projectObj, projectSlug} = projectNavProps;
     const projectUserObj = projectObj['user'];
@@ -30,13 +26,8 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
     const [toggleSED, setToggleSED] = useState(false)
     const [changeTitleBool, setChangeTitleBool] = useState(false)
     const [titleStr, setTitleStr] = useState(projectObj['name'] ? projectObj['name']: 'New Project')
-    // const [editForm, setEditForm] = useState(false)
 
     // event handlers
-    // const onClickEditProject = async (e) => {
-    //     // change the d3 canvas to allow for editing
-    //     e.preventDefault();
-    // }
     const onClickSaveProject = async (e) => {
         e.preventDefault();
         let url = `/api/project/`;

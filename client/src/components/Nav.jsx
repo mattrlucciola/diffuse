@@ -31,7 +31,6 @@ export default function Nav({loginObj, lsObj}){
        setSearch(newSearch);
     }
     const onClickLogout = async () => {
-        console.log('logging out');
         deleteLsObj()
         setLoggedIn(() => false)
     }

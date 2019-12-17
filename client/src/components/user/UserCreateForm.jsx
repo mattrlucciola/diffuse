@@ -7,7 +7,6 @@ import {Redirect} from 'react-router-dom';
 // modules
 
 // components
-// import x from '.'
 
 // util
 import {setLsByKey} from '../../util/localstorage';
@@ -15,7 +14,6 @@ import {Post, PostJSON} from '../../util/djangoRequest';
 
 // start
 export default function UserCreateForm({loginObj}){
-    console.log('USERCREAETEFORM');
     // destructuring
     const {loggedIn} = loginObj;
 
@@ -64,13 +62,10 @@ export default function UserCreateForm({loginObj}){
             const formElem = formElemArr[idx];
             let key = formElem['name'];
             data[key] = formElem['value']
-            console.log(key, data[key])
         }
         
         let url = `/api/user/`
         let resJSON = await PostJSON(url, data);
-        console.log(resJSON)
-        console.log(resJSON)
         if (true){}
         else {
             onSubmitLogin(e)
@@ -79,14 +74,13 @@ export default function UserCreateForm({loginObj}){
 
     // effects
     useEffect(()=>{
-        console.log('returning redirect in the useeffect!', `loggenin = ${loggedIn}`);
         return <Redirect to={`/${username}/`} />;
     }, [loggedIn, username])
 
     // render fxns
     const buildInput = (type, name, placeholder) => {
         if (name === 'phone') {
-            return <input onChange={(e) => {console.log(e.target.value)}} type={type} name={name} className={name} placeholder={placeholder} />
+            return <input type={type} name={name} className={name} placeholder={placeholder} />
         } else {
             return(
                 <input type={type} name={name} className={name} placeholder={placeholder} />

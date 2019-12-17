@@ -116,7 +116,6 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
         const svgCanvas = d3.select(`#${idStr}`)
             .append("svg")
             .attr("class", "canvas")
-            // .attr("class", "canvas")
             .attr("width", svgWidth)
             .attr("height", svgHeight);
         setScales(scaleObj);
@@ -125,12 +124,8 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
     }
     const reDrawCanvas = () => {
         d3.select(`.canvas`).remove()
-        // drawCanvas()
         setCanvasObj(() => {return undefined})
     }
-    // const reDrawCircles = () => {
-    //     d3.select(`#${idStr}`).selectAll('*').remove()
-    // }
     // effects
     // when notes array or url updates
     useEffect(()=>{
@@ -144,20 +139,9 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
 
     // when save is triggered
     useEffect(()=>{
-        console.log('also saving here')
         contentArr[instrumentArrIdx]['midi']['pianoRoll']['notes'] = notesArr;
-        // console.log('\n in INSTRUMENTCANVAS useeffect (before) ');
-        // console.log('saving the notes array (before)');
-        // console.log(contentArr[instrumentArrIdx]['midi']['pianoRoll']['notes']);
-        // console.log('saving the notes array (after)');
         canvasObj && updateProjectObjContent(contentArr);
     }, [save])
-    // useEffect(() => {
-    //     console.log('hey its updating', document.location.pathname);
-    //     console.log(contentObj)
-    // },[])
-    // start
-    // https://www.codingame.com/playgrounds/3387/scales-and-axes-in-d3
     return(
         <div className="InstrumentCanvas" onClick={(e) => {clickUpdateNotesArr(e)}} >
             <div className="canvas-container" id={idStr} ></div>

@@ -31,7 +31,6 @@ export default function UserView({loggedIn, props}){
         let projectsArr = userObj['project'];
         let projectElemsArr = projectsArr.map((projectObj, idx) => {
             // destructuring
-            console.log(projectObj)
             let {name, user, project_slug, resource_id, created_dt, updated_dt, collaborators} = projectObj;
             return(
                 <div className="project-info" key={`uvpa-${idx}`} >
