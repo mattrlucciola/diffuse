@@ -3,6 +3,9 @@
 // react
 import React, {useState, useEffect} from 'react';
 
+// style
+import './InstrumentCanvas.css';
+
 // modules
 import * as d3 from 'd3';
 
@@ -29,11 +32,12 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
     })
 
     // state
-    const [svgHeight] = useState(1500);
     const [svgWidth] = useState(1100);
-    const [datumSize] = useState(25);
-    const [pitchCt] = useState(Math.floor(svgHeight / datumSize));
-    const [noteCt] = useState(Math.floor(svgWidth / datumSize));
+    const [svgHeight] = useState(1500);
+    const [datumWidthPx] = useState(20);
+    const [datumHeightPx] = useState(10);
+    const [noteCt] = useState(Math.floor(svgWidth / datumWidthPx));
+    const [pitchCt] = useState(Math.floor(svgHeight / datumHeightPx));
     const [notesArr, setNotesArr] = useState([...newNotes]);
     const [canvasObj, setCanvasObj] = useState();
     // const [automationArr, setAutomationArr] = useState([...automation]);
@@ -49,8 +53,8 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
         let leftCoord = clickLeft - offsetLeft;
         let topCoord = scrollY + clickTop - offsetTop;
 
-        let xCoord = noteCt - Math.floor((svgWidth - leftCoord) / datumSize);
-        let yCoord = 1 + Math.floor((svgHeight - topCoord) / datumSize);
+        let xCoord = noteCt - Math.floor((svgWidth - leftCoord) / datumWidthPx);
+        let yCoord = 1 + Math.floor((svgHeight - topCoord) / datumHeightPx);
         let clickNoteObj = {x: xCoord, y: yCoord, weight: 1};
 
         // check if note exists (setting up var for conditions)
@@ -67,25 +71,25 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
     }
 
     // functions
-    const renderCircles = () => {
-        canvasObj.selectAll('circle').remove()
-        const circles = canvasObj.selectAll('circle')
+    const renderShapes = () => {
+        let shapeType = 'rect';
+        canvasObj.selectAll(shapeType).remove()
+        const plotPoints = canvasObj.selectAll(shapeType)
             .data(notesArr)
             .enter()
-            .append('circle');
-        circles.attr('cx', (d) => {return scaleObj['xScale'](d['x'])})
-            .attr('cy', (d) => {return scaleObj['yScale'](d['y'])})
-            .attr('r', () => {return (datumSize - 10)/2})
-            .attr('fill', 'orange')
-            .attr('stroke', (d) => {return `rgba(${(scaleObj['colorXScale'](d['x']) + scaleObj['colorYScale'](d['y'])) / 2}, 0, 0, ${d['weight']*(1/2)})`})
-            .attr('stroke-width' , (d) => {return 10});
+            .append(shapeType);
+        plotPoints
+            .attr('x', (d) => {return scaleObj['xScale'](d['x'])+1})
+            .attr('y', (d) => {return scaleObj['yScale'](d['y'])+1})
+            .attr('width', () => {return `${datumWidthPx-1}px`})
+            .attr('height', () => {return `${datumHeightPx-1}px`})
         setCanvasObj(() => {return canvasObj});
     }
 
     const setScales = () => {
         scaleObj['xScale'] = d3.scaleLinear()
             .domain([1, noteCt])
-            .range([1 + 7, svgWidth - 7]);
+            .range([1, svgWidth]);
         scaleObj['yScale'] = d3.scaleLinear()
             .domain([1, pitchCt])
             .range([svgHeight, 1]);
@@ -98,18 +102,30 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
     }
 
     const renderAxes = (_canvasElem_) => {
-        _canvasElem_.append('g')
+        _canvasElem_.append("g")
             .attr('transform', `translate(0,${svgHeight})`)
-            .call(d3.axisBottom(scaleObj['xScale'])
-            .ticks(noteCt));
+            .attr("class", "vertical")
+            .call(
+                d3.axisBottom(scaleObj['xScale'])
+                    .ticks(noteCt)
+                    .tickSize(-svgHeight)
+                    .tickFormat("")
+                    // .tickSizeOuter(0)
+            );
         _canvasElem_.append("g")
             .attr("transform", `translate(0, 0)`)
-            .call(d3.axisLeft(scaleObj['yScale'])
-            .ticks(noteCt));
+            .attr("class", "horizontal")
+            .call(
+                d3.axisLeft(scaleObj['yScale'])
+                    .ticks(noteCt * 2)
+                    .tickSize(-svgWidth)
+                    .tickFormat("")
+                    // .tickSizeOuter(0)
+            );
     }
 
     const updateCanvas = () => {
-        renderCircles();
+        renderShapes();
     }
 
     const drawCanvas = () => {

@@ -1,0 +1,10 @@
+rect {
+    fill: rgb(223, 120, 94);
+    rx: 3px;
+}
+.horizontal g {
+    color: rgba(188, 209, 188, 0.178);
+}
+.vertical g {
+    color: rgba(188, 209, 188, 0.233);
+}
