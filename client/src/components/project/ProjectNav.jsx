@@ -54,7 +54,7 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
         console.log(newTitle)
         setTitleStr(() => {return newTitle})
     }
-    const onSubmitChangeTitle = (e) => {
+    const onSubmitChangeTitle = async (e) => {
         e.preventDefault()
         
         // save/partial update to database if its an existing project
@@ -65,7 +65,8 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
             // on blur or submit, check if name is duplicate > show an alert
             // on blur or submit, check if name is duplicate > revert to old name
             // on successful submit update the project name, slug, and resourceId
-            url = `/api/project/${requestBody['resource_id']}/`
+            let url = `/api/project/${requestBody['resource_id']}/`
+            let requestBody = {...projectObj};
             delete requestBody['resource_id']
             await Put(url, requestBody, getLsObj()['diffuse_jwt']);
             ;
@@ -83,7 +84,6 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
                 {toggleSED ? (
                     <div className="s-e-d-dropdown fade-in" >
                         <div className="save" onClick={(e) => {onClickSaveProject(e)}} >Save</div>
-                        {/* <div className="edit" onClick={(e) => {onClickEditProject(e)}} >Edit</div> */}
                         <div className="delete" onClick={(e) => {Delete(e)}} >Delete</div>
                     </div>
                 ): <div></div>
