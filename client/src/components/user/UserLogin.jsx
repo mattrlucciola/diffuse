@@ -39,11 +39,18 @@ export default function UserLogin({loginObj}) {
         username && setUsernameState(() => username)
         if (username && password) {
             let url = '/api/auth/login/';
+            let body = JSON.stringify({username, password});
+            let response; let resJson;
             try {
-                let body = JSON.stringify({username, password});
-                let response = await Post(url, body);
-                let resJson = await response.json();
-
+                response = await Post(url, body);
+                console.log('success body: ', response)
+            } catch (e) {
+                console.log('failure body: ', e)
+            }
+            try {
+                resJson = await response.json();
+                console.log('success resjson: ', response)
+                
                 // manage the response
                 let httpStatus = response.status;
                 let jwt = resJson['token'];
@@ -62,6 +69,7 @@ export default function UserLogin({loginObj}) {
             } catch (e) {
                 let errorStatus = e.status;
                 // setLoginError(()=>{return {...e}})
+                console.log('failure resjson: ', e)
                 console.log('\n\nerror (below)\n\n', errorStatus, e)
                 for (let i in e) {
                     console.log(i, e[i]);
