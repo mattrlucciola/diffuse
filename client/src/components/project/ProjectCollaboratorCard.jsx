@@ -8,7 +8,6 @@ import {Link} from 'react-router-dom';
 import './css/ProjectCollaboratorCard.css';
 
 // components
-// import x from '.'
 
 // start
 export default function ProjectCollaboratorCard({projectNavObj}){

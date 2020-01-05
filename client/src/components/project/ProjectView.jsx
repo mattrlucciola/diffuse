@@ -6,13 +6,13 @@
 // react
 import React, {useState, useEffect} from 'react';
 
+// style
+import './css/ProjectView.css';
+
 // components
 // import CommentList from '../comment/CommentList';
 import ProjectNav from './ProjectNav';
 import ProjectMain from './ProjectMain';
-
-// style
-import './css/ProjectView.css';
 
 // modules
 

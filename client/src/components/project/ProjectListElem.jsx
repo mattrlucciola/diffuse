@@ -8,21 +8,33 @@ import {Link} from 'react-router-dom';
 import './css/ProjectList.css';
 
 // components
-// import x from '.'
 
 // start
 export default function ProjectListElem({projectObj}){
 
     // destructuring
-    const {user, name, project_slug} = projectObj;
+    const {user, name, project_slug, created_dt} = projectObj;
+    console.log(projectObj)
 
     // global vars
     let {username} = user;
 
+    const formatDt = (dt) => {
+        let dtStr = `${dt}`;
+        let dtArr = dtStr.split('T');
+        let [date, time] = dtArr;
+        time = time.split(':')
+        time = `${time[0]}:${time[1]}`
+        
+        console.log(`date:${date}   time:${time}`)
+        let newDtStr = `${date} ${time}`;
+        return newDtStr
+    }
     return(
         <div className="ProjectListElem" key={`PLE${project_slug}`} >
             <div className="author"><Link to={`/${username}/`}>{username}</Link></div>
             <div className="name"><Link to={`/${username}/${project_slug}/`}>{name}</Link></div>
+            <div className="date">{created_dt && formatDt(created_dt)}</div>
         </div>
     )
 }
