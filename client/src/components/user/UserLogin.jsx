@@ -52,7 +52,7 @@ export default function UserLogin({loginObj}) {
                     alert('something went wrong, 403 status')
                 }
             } catch (e) {
-                // console.log('failure body: ', e, body)
+                alert('failure body: ', e, body)
             }
             try {
                 resJson = await response.json();
@@ -65,15 +65,9 @@ export default function UserLogin({loginObj}) {
                 setLsByKey('username', username);
                 setLsByKey('user_id', userId);
                 setLoggedIn(() => true);
-                console.log('logged in!')
             } catch (e) {
                 let errorStatus = e.status;
-                console.log('failure resjson: ', e)
-                console.log('\n\nerror (below)\n\n', errorStatus, e)
-                for (let i in e) {
-                    console.log(i, e[i]);
-                }
-                console.log('error (above)\n\n')
+                alert('\n\nerror (below)\n\n', errorStatus, '\n\n', e)
             }
         } else {
             let msg;

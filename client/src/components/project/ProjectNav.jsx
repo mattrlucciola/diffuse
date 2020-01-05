@@ -16,7 +16,7 @@ import {Put, Post, Delete} from '../../util/djangoRequest';
 import {slugify} from '../../util/slugify';
 
 // start
-export default function ProjectNav({loggedIn, projectNavProps, saveProps, currentUsername}){
+export default function ProjectNav({projectNavProps, saveProps}){
     // destructuring variables
     const {projectObj, projectSlug} = projectNavProps;
     const projectUserObj = projectObj['user'];
@@ -59,7 +59,7 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
     }
     const onSubmitChangeTitle = async (e) => {
         e.preventDefault()
-        
+
         let requestBody = {...projectObj};
         // save/partial update to database if its an existing project
         if (collaboratorsArr) {

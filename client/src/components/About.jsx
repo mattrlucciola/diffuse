@@ -1,4 +1,4 @@
-// App.js > Main.jsx > Center.jsx > Content.jsx > About.jsx
+// App.js > Main.jsx > About.jsx
 
 // react
 import React from 'react';

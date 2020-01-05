@@ -5,7 +5,6 @@ import React, {useState} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 
 // components
-// import x from '.'
 
 // utility functions
 import {deleteLsObj} from '../util/localstorage'

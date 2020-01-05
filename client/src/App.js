@@ -17,7 +17,6 @@ import SidebarRight from './components/SidebarRight'
 
 // util
 import {getLsObj} from './util/localstorage';
-import {GetJSON} from './util/djangoRequest';
 
 // start
 export default function App() {
@@ -34,22 +33,6 @@ export default function App() {
 	}
 	
 	// effects
-	useEffect(() => {
-		const checkLoggedIn = async () => {
-			let jwt = lsObj['diffuse_jwt'];
-			if (jwt) {
-				try {
-					let resJSON = await GetJSON('/api/user/johnnyadams/')
-					if (resJSON && jwt) {
-						setLoggedIn(() => true)
-					}
-				} catch (e) {
-					console.log(e)
-				}
-			}
-		}
-		checkLoggedIn()
-	}, [lsObj])
 	useEffect(()=>{
 		checkLsObj()
 	}, [loggedIn])
