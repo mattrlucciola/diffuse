@@ -43,7 +43,8 @@ export default function UserLogin({loginObj}) {
             let response; let resJson;
             try {
                 response = await Post(url, body);
-                console.log('success body: ', response)
+                console.log('success response: ', response)
+                console.log('success body: ', body)
             } catch (e) {
                 console.log('failure body: ', e)
             }
