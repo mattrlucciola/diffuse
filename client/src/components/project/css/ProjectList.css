@@ -16,7 +16,6 @@
     }
         .ProjectListElem .author {
             left: 0;
-            margin-left: 20px;
             width: 250px;
 
             /* background */
@@ -28,13 +27,16 @@
             text-shadow: 0 0 1px rgba(255, 255, 255, 0.425);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
+            .ProjectListElem .author a {
+                margin-left: 25px;
+            }
         .ProjectListElem .name {
             /* position */
             left: 0;
             margin-left: 20px;
 
             /* size */
-            width: 400px;
+            max-width: 400px;
 
             /* backgroun */
 
@@ -44,7 +46,9 @@
             text-shadow: 0 0 1px rgba(255, 255, 255, 0.425);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-            .ProjectListElem .name .a {}
+            .ProjectListElem .name a {
+                margin-left: 20px;
+            }
         .ProjectListElem .date {
             /* position */
             right: 0;
@@ -62,4 +66,5 @@
             font-size: 12px;
             text-align: right;
             white-space: nowrap;
+            cursor: default;
         }

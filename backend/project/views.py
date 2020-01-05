@@ -24,6 +24,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return self.partial_update(request, *args, **kwargs)
     serializer_class = ProjectDetailSerializer
     queryset = Project.objects.all()
-    search_fields  = ('name', 'user', 'project_slug', 'resource_id')
-    filter_fields  = ('id', 'name', 'user', 'project_slug', 'resource_id')
-    lookup_field = 'resource_id'
+    search_fields  = ('name', 'user', 'project_slug', 'resource_slug')
+    filter_fields  = ('id', 'name', 'user', 'project_slug', 'resource_slug')
+    lookup_field = 'resource_slug'

@@ -24,7 +24,7 @@ class ProjectBasicSerializer(serializers.ModelSerializer):
             "name",
             "user",
             "project_slug",
-            "resource_id",
+            "resource_slug",
             "created_dt",
             "updated_dt",
             "collaborators",
@@ -37,12 +37,12 @@ class ProjectListingField(serializers.RelatedField):
             return serializer.data
         else:
             return {
-                "name": value.name,
-                "user": value.user,
-                "project_slug": value.project_slug,
-                "resource_id": value.resource_id,
-                "created_dt": value.created_dt,
-                "updated_dt": value.updated_dt,
+                "name": value['name'],
+                "user": value['user'],
+                "project_slug": value['project_slug'],
+                "resource_slug": value['resource_slug'],
+                "created_dt": value['created_dt'],
+                "updated_dt": value['updated_dt'],
             }
 
 class UserSerializer(serializers.ModelSerializer):

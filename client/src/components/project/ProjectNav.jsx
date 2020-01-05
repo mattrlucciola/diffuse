@@ -36,13 +36,13 @@ export default function ProjectNav({projectNavProps, saveProps}){
         let url = `/api/project/`;
         let requestBody = {...projectObj};
         requestBody['project_slug'] = slugify(projectObj['name']);
-        requestBody['resource_id'] = slugify(`${projectObj['user']['username']}-${projectObj['name']}`);
+        requestBody['resource_slug'] = slugify(`${projectObj['user']['username']}-${projectObj['name']}`);
         delete requestBody['user'];
         if (document.location.pathname === '/project/active/') {
             await Post(url, JSON.stringify(requestBody));
         } else {
-            url = `/api/project/${requestBody['resource_id']}/`
-            delete requestBody['resource_id']
+            url = `/api/project/${requestBody['resource_slug']}/`
+            delete requestBody['resource_slug']
             await Put(url, requestBody, getLsObj()['diffuse_jwt']);
         }
     }
@@ -69,8 +69,8 @@ export default function ProjectNav({projectNavProps, saveProps}){
             // on blur or submit, check if name is duplicate > show an alert
             // on blur or submit, check if name is duplicate > revert to old name
             // on successful submit update the project name, slug, and resourceId
-            let url = `/api/project/${requestBody['resource_id']}/`
-            delete requestBody['resource_id']
+            let url = `/api/project/${requestBody['resource_slug']}/`
+            delete requestBody['resource_slug']
             await Put(url, requestBody, getLsObj()['diffuse_jwt']);
             ;
         }

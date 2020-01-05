@@ -34,8 +34,8 @@ export default function UserView({props}){
         let projectsArr = userObj['project'];
         let projectElemsArr = projectsArr.map((projectObj, idx) => {
             // destructuring
-            let {name, user, project_slug, created_dt, collaborators} = projectObj; // not sure what to do w resource_id or updated_dt
-            // let {name, user, project_slug, resource_id, created_dt, updated_dt, collaborators} = projectObj;
+            let {name, user, project_slug, created_dt, collaborators} = projectObj; // not sure what to do w resource_slug or updated_dt
+            // let {name, user, project_slug, resource_slug, created_dt, updated_dt, collaborators} = projectObj;
             return(
                 <div className="project-info" key={`uvpa-${idx}`} >
                     <Link to={`/${user['username']}/${project_slug}/`} >

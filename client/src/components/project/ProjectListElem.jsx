@@ -14,7 +14,6 @@ export default function ProjectListElem({projectObj}){
 
     // destructuring
     const {user, name, project_slug, created_dt} = projectObj;
-    console.log(projectObj)
 
     // global vars
     let {username} = user;
@@ -26,7 +25,6 @@ export default function ProjectListElem({projectObj}){
         time = time.split(':')
         time = `${time[0]}:${time[1]}`
         
-        console.log(`date:${date}   time:${time}`)
         let newDtStr = `${date} ${time}`;
         return newDtStr
     }

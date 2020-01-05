@@ -24,14 +24,14 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'project_slug',
-            'resource_id',
+            'resource_slug',
             'created_dt',
             'updated_dt',
             'user',
             'collaborators',
             'content',
         )
-        lookup_field = 'resource_id'
+        lookup_field = 'resource_slug'
 
     def create(self, validated_data):
         collaborators = validated_data.pop('collaborators')
@@ -45,10 +45,10 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         collaborators = validated_data.pop('collaborators')
-        instance.name = validated_data['name']
-        instance.project_slug = validated_data['project_slug']
-        instance.resource_id = slugify(f"{self.context['request'].user}-{validated_data['name']}")
-        instance.content = validated_data['content']
-        instance.collaborators.set(collaborators)
+        instance['name'] = validated_data['name']
+        instance['project_slug'] = validated_data['project_slug']
+        instance['resource_slug'] = slugify(f"{self.context['request'].user}-{validated_data['name']}")
+        instance['content'] = validated_data['content']
+        instance['collaborators'].set(collaborators)
         instance.save()
         return instance

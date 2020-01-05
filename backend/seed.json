@@ -68,7 +68,7 @@
         "fields": {
             "name": "First Project",
             "project_slug": "projet-1",
-            "resource_id": "trecool-projet-1",
+            "resource_slug": "trecool-projet-1",
             "content": [
                 {
                     "name": "kick",
@@ -137,7 +137,7 @@
         "fields": {
             "name": "Second Projet",
             "project_slug": "second-project",
-            "resource_id": "johnnyadams-second-project",
+            "resource_slug": "johnnyadams-second-project",
             "content": [
                 {
                     "name": "guitar",
