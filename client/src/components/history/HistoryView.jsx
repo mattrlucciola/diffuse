@@ -7,7 +7,7 @@ import React from 'react';
 // modules
 
 // components
-import CommitCard from './CommitCard';
+import CommitCard from './commit/CommitCard';
 
 // start
 export default function HistoryView({props}){

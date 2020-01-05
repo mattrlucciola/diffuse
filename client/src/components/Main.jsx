@@ -15,8 +15,8 @@ import UserView from './user/UserView';
 import UserCreateForm from './user/UserCreateForm';
 import UserLogin from './user/UserLogin';
 // history
-import HistoryView from './history/HistoryView';
-import CommitView from './history/CommitView';
+// import HistoryView from './history/HistoryView';
+// import CommitView from './history/commit/CommitView';
 
 // start
 export default function Main({loginObj, lsObj}){
@@ -36,9 +36,10 @@ export default function Main({loginObj, lsObj}){
                 <Route exact path="/projects/recent/" render={() => <ProjectList loggedIn={loggedIn} />} />
                 <Route exact path="/feed/" render={() => <ProjectList loggedIn={loggedIn} />} />
 
-                <Route exact path="/:username/:project_slug/history/:commitId/" render={(props) => <CommitView props={props} />} />
-                <Route exact path="/:username/:project_slug/history/" render={(props) => <HistoryView props={props} />} />
-                
+                {/* <Route exact path="/:username/:project_slug/history/:commitId/" render={(props) => <CommitView props={props} />} /> */}
+                {/* <Route exact path="/:username/:project_slug/history/" render={(props) => <HistoryView props={props} />} /> */}
+
+                {/* PUT ALL OTHER VIEWS BEFORE THIS SECTION */}
                 <Route exact path="/:username/:project_slug/" render={(props) => <ProjectView props={props} />} />
                 <Route exact path="/:username/" render={(props) => <UserView loggedIn={loggedIn} props={props} username={username} />} />
                 <Route exact path="/" component={About} />

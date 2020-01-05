@@ -7,6 +7,9 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
+// style
+import './css/UserView.css';
+
 // modules
 
 // util

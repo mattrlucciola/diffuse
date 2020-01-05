@@ -3,8 +3,10 @@
 // react
 import React from 'react';
 
+// style
+import './css/UserEdit.css';
+
 // components
-// import x from '.'
 
 // start
 export default function UserEdit(){
