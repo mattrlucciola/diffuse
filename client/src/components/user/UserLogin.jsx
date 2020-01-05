@@ -19,7 +19,6 @@ export default function UserLogin({loginObj}) {
 
     // state
     const [usernameState, setUsernameState] = useState();
-    // const [loginError, setLoginError] = useState({});
 
     // utility fxns
     
@@ -43,33 +42,29 @@ export default function UserLogin({loginObj}) {
             let response; let resJson;
             try {
                 response = await Post(url, body);
-                console.log('success response: ', response)
-                console.log('success body: ', body)
-            } catch (e) {
-                console.log('failure body: ', e)
-            }
-            try {
-                resJson = await response.json();
-                console.log('success resjson: ', response)
-                
-                // manage the response
                 let httpStatus = response.status;
-                let jwt = resJson['token'];
-                let userId = resJson['user']['pk'];
-
+                
                 // handle error code
                 if ([403].includes(httpStatus)) {
                     alert('something went wrong, 403 status')
-                } else {
-                    setLsByKey('diffuse_jwt', jwt);
-                    setLsByKey('username', username);
-                    setLsByKey('user_id', userId);
-                    setLoggedIn(() => true);
-                    console.log('logged in!')
                 }
             } catch (e) {
+                // console.log('failure body: ', e, body)
+            }
+            try {
+                resJson = await response.json();
+                
+                // manage the response
+                let jwt = resJson['token'];
+                let userId = resJson['user']['pk'];
+
+                setLsByKey('diffuse_jwt', jwt);
+                setLsByKey('username', username);
+                setLsByKey('user_id', userId);
+                setLoggedIn(() => true);
+                console.log('logged in!')
+            } catch (e) {
                 let errorStatus = e.status;
-                // setLoginError(()=>{return {...e}})
                 console.log('failure resjson: ', e)
                 console.log('\n\nerror (below)\n\n', errorStatus, e)
                 for (let i in e) {
