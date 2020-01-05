@@ -1,11 +1,24 @@
 .ProjectCollaboratorCard {
+    /* position */
+    position: absolute;
+    margin-left: -30px;
+    /* alignment */
     display: flex; flex-flow: column;
     justify-content: center;
     align-items: center;
-    background: red;
+    /* size */
+    max-height: 300px;
+    overflow-y: scroll;
+    /* background */
+    background: rgb(60, 65, 71);
+    border-radius: 5px;
+    z-index: 1;
+    /* text */
 }
     .ProjectCollaboratorCard .title {
-        font-size: 10px;
+        font-size: 15px;
+        padding: 5px 0;
+        color: rgba(245, 245, 245, 0.753);
     }
     .ProjectCollaboratorCard .collaborator-container {
         display: flex; flex-flow: column;
@@ -14,10 +27,10 @@
         padding-bottom: 1px;
     }
         .ProjectCollaboratorCard .collaborator-container .collaborator {
-            background: black;
             font-size: 15px;
             margin: 0;
             margin-bottom: 5px;
             width: 150px; height: 20px;
             border: 1px solid grey;
+            color: rgba(245, 245, 245, 0.849);
         }

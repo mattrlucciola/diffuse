@@ -29,7 +29,7 @@ export default function ProjectCollaboratorCard({projectNavObj}){
     }
 
     return(
-        <div className="ProjectCollaboratorCard" key={`pcc--${projectNavObj['user']['username']-projectNavObj['project_slug']}`} >
+        <div className="ProjectCollaboratorCard fade-in noselect" key={`pcc--${projectNavObj['user']['username']-projectNavObj['project_slug']}`} >
             <div className="title">Add</div>
             <div className="collaborator-container">
                 {buildCollaboratorList(collaborators)}

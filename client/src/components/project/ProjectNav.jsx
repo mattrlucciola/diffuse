@@ -16,7 +16,7 @@ import {Put, Post, Delete} from '../../util/djangoRequest';
 import {slugify} from '../../util/slugify';
 
 // start
-export default function ProjectNav({projectNavProps, saveProps}){
+export default function ProjectNav({projectNavProps, saveProps, loggedIn}){
     // destructuring variables
     const {projectObj, projectSlug} = projectNavProps;
     const projectUserObj = projectObj['user'];
@@ -72,7 +72,6 @@ export default function ProjectNav({projectNavProps, saveProps}){
             let url = `/api/project/${requestBody['resource_slug']}/`
             delete requestBody['resource_slug']
             await Put(url, requestBody, getLsObj()['diffuse_jwt']);
-            ;
         }
 
         // exit the input
@@ -96,7 +95,8 @@ export default function ProjectNav({projectNavProps, saveProps}){
     }
     const buildCollaboratorCard = () => {
         return (
-            showCollab && <div className="collab-card fade-in noselect"><ProjectCollaboratorCard projectNavObj={projectObj} /></div>
+            // showCollab && <div className="collab-card fade-in noselect"><ProjectCollaboratorCard projectNavObj={projectObj} /></div>
+            showCollab && <ProjectCollaboratorCard projectNavObj={projectObj} />
         )
     }
     const buildTitleElem = () => {
@@ -116,7 +116,7 @@ export default function ProjectNav({projectNavProps, saveProps}){
     // save, edit, {(view collaborators) + (add collaborator) + (collaborator count)}, {history + (history count)}
     return(
         <div className="ProjectNav" >
-            <div className="title-container" onClick={(e) => {onClickChangeTitle(e)}} >{changeTitleBool ? buildEditTitleElem(): buildTitleElem()}</div>
+            <div className="title-container" onClick={(e) => {loggedIn ? onClickChangeTitle(e): alert("Must be signed in to edit")}} >{changeTitleBool ? buildEditTitleElem(): buildTitleElem()}</div>
             <div className="sub-nav">
                 <div className="creator" ><Link to={`/${projectUserObj['username']}/`} >{projectUserObj['username']}</Link></div>
                 <div className="collaborate-history-container noselect" >
@@ -125,8 +125,8 @@ export default function ProjectNav({projectNavProps, saveProps}){
                             `${collaboratorsArr.length} Collaborator${(collaboratorsArr.length > 1) ? 's': ''}`:
                             `Add Collaborators`
                         }
+                        {buildCollaboratorCard()}
                     </div>
-                    {buildCollaboratorCard()}
                     {
                         <div className="history-link noselect">
                             <Link to={{pathname: `/${projectUserObj['username']}/${projectSlug}/history/`, state: {projectObj}}} >History</Link>
