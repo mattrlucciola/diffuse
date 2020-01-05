@@ -11,6 +11,9 @@ import React, {useState, useEffect} from 'react';
 import ProjectNav from './ProjectNav';
 import ProjectMain from './ProjectMain';
 
+// style
+import './css/ProjectView.css';
+
 // modules
 
 // util

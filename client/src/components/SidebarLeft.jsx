@@ -10,7 +10,7 @@ import ProjectSidebar from './project/ProjectSidebar';
 export default function SidebarLeft({loggedIn}){
     const placeholderSidebar = () => {
         return(
-            <div className="left-sidebar placeholderSidebar">
+            <div className="placeholderSidebar">
                 Click to sign in or sign up here!
             </div>
         )

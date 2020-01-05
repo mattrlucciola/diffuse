@@ -1,0 +1,23 @@
+.ProjectCollaboratorCard {
+    display: flex; flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background: red;
+}
+    .ProjectCollaboratorCard .title {
+        font-size: 10px;
+    }
+    .ProjectCollaboratorCard .collaborator-container {
+        display: flex; flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 1px;
+    }
+        .ProjectCollaboratorCard .collaborator-container .collaborator {
+            background: black;
+            font-size: 15px;
+            margin: 0;
+            margin-bottom: 5px;
+            width: 150px; height: 20px;
+            border: 1px solid grey;
+        }

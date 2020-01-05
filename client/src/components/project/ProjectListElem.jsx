@@ -4,6 +4,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+// style
+import './css/ProjectList.css';
+
 // components
 // import x from '.'
 

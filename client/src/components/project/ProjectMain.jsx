@@ -3,6 +3,9 @@
 // react
 import React from 'react';
 
+// style
+import './css/ProjectMain.css';
+
 // components
 import InstrumentList from '../instrument/InstrumentList';
 

@@ -5,6 +5,9 @@ import React, {useState, useEffect} from 'react';
 
 // modules
 
+// style
+import './css/ProjectList.css';
+
 // util
 import {GetJSON} from '../../util/djangoRequest';
 

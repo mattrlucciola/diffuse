@@ -4,6 +4,9 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
+// style
+import './css/ProjectCollaboratorCard.css';
+
 // components
 // import x from '.'
 
