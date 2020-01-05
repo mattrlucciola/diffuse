@@ -10,7 +10,6 @@ import {Link, Redirect} from 'react-router-dom';
 import {deleteLsObj} from '../util/localstorage'
 
 // start
-// export default function Nav({loginObj, lsObj, checkLsObj}){
 export default function Nav({loginObj, lsObj}){
     // destructuring
     const {loggedIn, setLoggedIn} = loginObj;

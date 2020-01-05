@@ -34,6 +34,7 @@ export default function Main({loginObj, lsObj}){
                 <Route exact path="/new/" render={() => <UserCreateForm loginObj={{loggedIn, setLoggedIn}} />} />
                 <Route exact path="/users/" render={(props) => <UserList loggedIn={loggedIn} props={props} />} />
                 <Route exact path="/projects/recent/" render={() => <ProjectList loggedIn={loggedIn} />} />
+                <Route exact path="/projects/" render={() => <ProjectList loggedIn={loggedIn} />} />
                 <Route exact path="/feed/" render={() => <ProjectList loggedIn={loggedIn} />} />
 
                 {/* <Route exact path="/:username/:project_slug/history/:commitId/" render={(props) => <CommitView props={props} />} /> */}
