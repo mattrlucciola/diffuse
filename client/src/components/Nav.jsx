@@ -8,7 +8,7 @@ import {Link, Redirect} from 'react-router-dom';
 // import x from '.'
 
 // utility functions
-import {deleteLsObj, getLsObj} from '../util/localstorage'
+import {deleteLsObj} from '../util/localstorage'
 
 // start
 // export default function Nav({loginObj, lsObj, checkLsObj}){

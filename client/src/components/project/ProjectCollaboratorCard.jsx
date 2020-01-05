@@ -13,7 +13,7 @@ export default function ProjectCollaboratorCard({projectNavObj}){
     const {collaborators} = projectNavObj;
 
     // states
-    const [collaboratorsArr, setCollaboratorsArr] = useState(collaborators ? collaborators: [])
+    const [collaboratorsArr] = useState(collaborators ? collaborators: [])
 
     // functions
     const buildCollaboratorList = () => {

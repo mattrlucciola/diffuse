@@ -16,7 +16,7 @@ const scaleObj = {
 // start
 export default function InstrumentCanvas({contentObj, midi, idProps, save}){
     // destructuring
-    const {contentArr, projectName, updateProjectObjContent} = contentObj;
+    const {contentArr, updateProjectObjContent} = contentObj; // removed projectname
     const {pianoRoll} = midi;
     const {notes} = pianoRoll;
     const {idStr, instrumentArrIdx} = idProps;
@@ -28,7 +28,7 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
         y = y ? y: midinote;
         weight = weight ? weight: 1;
         duration = duration ? duration: 1;
-        return {x, y, weight: 1}
+        return {x, y, weight, duration}
     })
 
     // state
@@ -55,14 +55,15 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
 
         let xCoord = noteCt - Math.floor((svgWidth - leftCoord) / datumWidthPx);
         let yCoord = 1 + Math.floor((svgHeight - topCoord) / datumHeightPx);
-        let clickNoteObj = {x: xCoord, y: yCoord, weight: 1};
+        let clickNoteObj = {x: xCoord, y: yCoord, weight: 1, duration: 1};
 
         // check if note exists (setting up var for conditions)
         let newNotesArr = notesArr.filter((noteObj) => {
             return !(
-                (clickNoteObj['x']      === noteObj['x']) &&
-                (clickNoteObj['y']      === noteObj['y']) &&
-                (clickNoteObj['weight'] === noteObj['weight'])
+                (clickNoteObj['x']        === noteObj['x']) &&
+                (clickNoteObj['y']        === noteObj['y']) &&
+                (clickNoteObj['weight']   === noteObj['weight']) &&
+                (clickNoteObj['duration'] === noteObj['duration'])
             )
         })
         // check if note exists (bool statement)
@@ -110,7 +111,6 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
                     .ticks(noteCt)
                     .tickSize(-svgHeight)
                     .tickFormat("")
-                    // .tickSizeOuter(0)
             );
         _canvasElem_.append("g")
             .attr("transform", `translate(0, 0)`)
@@ -120,7 +120,6 @@ export default function InstrumentCanvas({contentObj, midi, idProps, save}){
                     .ticks(noteCt * 2)
                     .tickSize(-svgWidth)
                     .tickFormat("")
-                    // .tickSizeOuter(0)
             );
     }
 

@@ -14,7 +14,7 @@ export default function ProjectListElem({projectObj}){
     const {user, name, project_slug} = projectObj;
 
     // global vars
-    let {username, id} = user;
+    let {username} = user;
 
     return(
         <div className="ProjectListElem" key={`PLE${project_slug}`} >

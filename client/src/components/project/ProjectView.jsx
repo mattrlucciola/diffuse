@@ -22,7 +22,7 @@ import {initProject} from '../../util/initProject';
 export default function ProjectView({loggedIn, props}){
     // destructuring variables
     const {params} = props['match'];
-    const {state} = props['location'];
+    // const {state} = props['location'];
 
     // global variables
     const projectSlug = params['project_slug'];
@@ -33,7 +33,7 @@ export default function ProjectView({loggedIn, props}){
     // state
     const [save, setSave] = useState(false);
     const [projectObj, setProjectObj] = useState();
-    const [projectNavObj, setProjectNavObj] = useState();
+    // const [projectNavObj, setProjectNavObj] = useState();
     const [projectMainObj, setProjectMainObj] = useState();
     
     const resourceId = `${projectUsername}-${projectSlug}`;
@@ -47,17 +47,17 @@ export default function ProjectView({loggedIn, props}){
             _json_ = projectObj;
             _json_['user'] = {username:currentUsername, userId:currentUserId}
         }
-        let newProjectNavObj = {
-            user: _json_['user'],
-            name: _json_['name'],
-            project_slug: _json_['project_slug'],
-            collaborators: _json_['collaborators'],
-        }
+        // let newProjectNavObj = {
+        //     user: _json_['user'],
+        //     name: _json_['name'],
+        //     project_slug: _json_['project_slug'],
+        //     collaborators: _json_['collaborators'],
+        // }
         let newProjectMainObj = {
             name: _json_['name'],
             content: _json_['content'],
         }
-        setProjectNavObj(() => {return {...newProjectNavObj}})
+        // setProjectNavObj(() => {return {...newProjectNavObj}})
         setProjectMainObj(() => {return {...newProjectMainObj}})
     }
     

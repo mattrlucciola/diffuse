@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 import ProjectCollaboratorCard from './ProjectCollaboratorCard';
 
 // util
-import {getLsByKey, getLsObj} from '../../util/localstorage';
+import {getLsObj} from '../../util/localstorage';
 import {Put, Post, Delete} from '../../util/djangoRequest';
 import {slugify} from '../../util/slugify';
 
@@ -57,6 +57,7 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
     const onSubmitChangeTitle = async (e) => {
         e.preventDefault()
         
+        let requestBody = {...projectObj};
         // save/partial update to database if its an existing project
         if (collaboratorsArr) {
             // on create project: create a project entry in database with name: "untitled-${Date.now()}"
@@ -66,7 +67,6 @@ export default function ProjectNav({loggedIn, projectNavProps, saveProps, curren
             // on blur or submit, check if name is duplicate > revert to old name
             // on successful submit update the project name, slug, and resourceId
             let url = `/api/project/${requestBody['resource_id']}/`
-            let requestBody = {...projectObj};
             delete requestBody['resource_id']
             await Put(url, requestBody, getLsObj()['diffuse_jwt']);
             ;

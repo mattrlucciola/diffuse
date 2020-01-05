@@ -56,7 +56,7 @@ export default function UserLogin({loginObj}) {
                 
                 // manage the response
                 let jwt = resJson['token'];
-                let userId = resJson['user']['pk'];
+                userId = resJson['user']['pk'];
 
                 setLsByKey('diffuse_jwt', jwt);
                 setLsByKey('username', username);

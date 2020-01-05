@@ -10,7 +10,7 @@ import {Redirect} from 'react-router-dom';
 
 // util
 import {setLsByKey} from '../../util/localstorage';
-import {Post, PostJSON} from '../../util/djangoRequest';
+import {PostJSON} from '../../util/djangoRequest';
 
 // start
 export default function UserCreateForm({loginObj}){
@@ -65,10 +65,11 @@ export default function UserCreateForm({loginObj}){
         }
         
         let url = `/api/user/`
-        let resJSON = await PostJSON(url, data);
+        await PostJSON(url, data); // not sure what to do with resjson here
+        // let resJSON = await PostJSON(url, data);
         if (true){}
         else {
-            onSubmitLogin(e)
+            // onSubmitLogin(e)
         }
     }
 
