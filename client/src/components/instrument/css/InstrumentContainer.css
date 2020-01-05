@@ -1,0 +1,7 @@
+.InstrumentContainer {
+    display: flex;
+    flex-flow: row;
+    margin: 5px 20px;
+    background: rgb(76, 97, 100);
+    height: 200px;
+}

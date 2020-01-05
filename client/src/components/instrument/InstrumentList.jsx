@@ -3,6 +3,9 @@
 // react
 import React from 'react';
 
+// style
+import './css/InstrumentList.css';
+
 // components
 import InstrumentContainer from './InstrumentContainer';
 

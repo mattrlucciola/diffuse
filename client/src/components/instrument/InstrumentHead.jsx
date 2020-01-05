@@ -3,6 +3,9 @@
 // react
 import React from 'react';
 
+// style
+import './css/InstrumentHead.css';
+
 // components
 
 // start

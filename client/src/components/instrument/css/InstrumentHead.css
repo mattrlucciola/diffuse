@@ -1,0 +1,5 @@
+.InstrumentHead {
+    width: 10%; min-width: 100px;
+    border-right: 5px solid grey;
+    background: rgb(79, 91, 100);
+}

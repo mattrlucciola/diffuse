@@ -4,7 +4,7 @@
 import React, {useState, useEffect} from 'react';
 
 // style
-import './InstrumentCanvas.css';
+import './css/InstrumentCanvas.css';
 
 // modules
 import * as d3 from 'd3';
