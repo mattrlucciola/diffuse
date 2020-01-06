@@ -5,15 +5,15 @@ export const _post = async (url, body) => {
     let response = await fetch(
         url,
         {
-            credentials: 'include',
-            method: 'POST',
-            mode: 'same-origin',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrftoken,
             },
-            body,
+            credentials: 'include',
+            method: 'POST',
+            mode: 'same-origin',
+            body: JSON.stringify(body),
         }
     )
     return response

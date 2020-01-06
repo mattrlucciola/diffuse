@@ -31,7 +31,7 @@ export default function Main({loginObj, lsObj}){
             <Switch>
                 <Route exact path="/project/active/" render={(props) => <ProjectView loggedIn={loggedIn} props={props} />} />
                 <Route exact path="/login/" render={() => <UserLogin loginObj={{loggedIn, setLoggedIn}} username={username} />} />
-                <Route exact path="/new/" render={() => <UserCreateForm loginObj={{loggedIn, setLoggedIn}} />} />
+                <Route exact path="/signup/" render={() => <UserCreateForm loginObj={{loggedIn, setLoggedIn}} />} />
                 <Route exact path="/users/" render={(props) => <UserList loggedIn={loggedIn} props={props} />} />
                 <Route exact path="/projects/recent/" render={() => <ProjectList loggedIn={loggedIn} />} />
                 <Route exact path="/projects/" render={() => <ProjectList loggedIn={loggedIn} />} />

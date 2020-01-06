@@ -41,7 +41,7 @@ export default function UserLogin({loginObj}) {
         username && setUsernameState(() => username)
         if (username && password) {
             let url = '/api/auth/login/';
-            let body = JSON.stringify({username, password});
+            let body = {username, password};
             let response; let resJson;
             try {
                 response = await Post(url, body);
@@ -87,7 +87,7 @@ export default function UserLogin({loginObj}) {
                 <input name='password' type="password" className="password" placeholder="Password" />
                 <input name='submit' type="submit" className="submit" value="Submit" />
             </form>
-            <Link to={`/user/new/`} className="create-user">{`New here? Click here to signup`}</Link>
+            <Link to={`/signup/`} className="create-user">{`New here? Click here to signup`}</Link>
         </div>
     )
     

@@ -13,7 +13,7 @@ import './css/UserCreateForm.css';
 
 // util
 import {setLsByKey} from '../../util/localstorage';
-import {PostJSON} from '../../util/djangoRequest';
+import {PostJSON, Post} from '../../util/djangoRequest';
 
 // start
 export default function UserCreateForm({loginObj}){
@@ -60,16 +60,27 @@ export default function UserCreateForm({loginObj}){
     const onSubmitSignup = async (e) => {
         e.preventDefault();
         let formElemArr = e.target;
-        let data = {};
+        let data = {
+            "username": null,
+            "password": null,
+            "first_name": '',
+            "last_name": '',
+            "email": '',
+            "dob": null,
+            "phone": '',
+            "profile_picture": null,
+            // "project": [],
+        };
         for (let idx = 0; idx < formElemArr.length; idx++) {
             const formElem = formElemArr[idx];
             let key = formElem['name'];
             data[key] = formElem['value']
         }
-        
+        delete data['submit']
         let url = `/api/user/`
-        await PostJSON(url, data); // not sure what to do with resjson here
-        // let resJSON = await PostJSON(url, data);
+        // await PostJSON(url, data); // not sure what to do with resjson here
+        let res = await Post(url, {...data});
+        console.log('creating a user json: ',res)
         if (true){}
         else {
             // onSubmitLogin(e)
@@ -100,13 +111,13 @@ export default function UserCreateForm({loginObj}){
                     {buildInput('password', 'password', 'Password')}
                 </div>
                 <div className="part-2">
-                    {buildInput('text', 'firstname', 'First Name')}
-                    {buildInput('text', 'lastname', 'Last Name')}
-                    {buildInput('phone', 'phone', 'Phone')}
-                    {buildInput('date', 'dob', 'Birthdate')}
+                    {buildInput('text', 'first_name', 'First Name')}
+                    {buildInput('text', 'last_name', 'Last Name')}
+                    {/* {buildInput('phone', 'phone', 'Phone')} */}
+                    {/* {buildInput('date', 'dob', 'Birthdate')} */}
                 </div>
                 <div className='part-3'>
-                    {buildInput('url', 'profilepicture', 'Profile Picture')}
+                    {/* {buildInput('url', 'profile_picture', 'Profile Picture')} */}
                 </div>
                 {buildInput('submit', 'submit', 'Submit')}
             </form>

@@ -39,7 +39,7 @@ export default function ProjectNav({projectNavProps, saveProps, loggedIn}){
         requestBody['resource_slug'] = slugify(`${projectObj['user']['username']}-${projectObj['name']}`);
         delete requestBody['user'];
         if (document.location.pathname === '/project/active/') {
-            await Post(url, JSON.stringify(requestBody));
+            await Post(url, requestBody);
         } else {
             url = `/api/project/${requestBody['resource_slug']}/`
             delete requestBody['resource_slug']
