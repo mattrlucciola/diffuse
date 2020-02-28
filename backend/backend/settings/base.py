@@ -10,17 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
-from datetime import timedelta
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-CLIENT_DIR = f"{os.path.dirname(BASE_DIR)}/client"
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'sik7-u%y&@fntqsi0$_64^zt-z6k9miel%v(lv93s)yy_=$j6u'
+
+# modules
+from os import path
+# local imports
+from .rest import *
+from .jwt import *
+from .apps import EXTERNAL_APPS, LOCAL_APPS
+
+# Build paths inside the project like this: path.join(BASE_DIR, ...)
+BASE_DIR = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
+CLIENT_DIR = f"{path.dirname(BASE_DIR)}/client"
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # Application definition
 INSTALLED_APPS = [
@@ -29,57 +33,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    
-    # rest and api stuff
-    'corsheaders',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    
-    # my apps
-    'user',
-    'project',
-    # 'comment',
-    # 'history',
+    *EXTERNAL_APPS,
+    *LOCAL_APPS,
 ]
 
-########################################################################################################################
-###################################################### REST & JWT ######################################################
-# from: https://medium.com/swlh/django-rest-framework-with-react-jwt-authentication-part-1-a24b24fa83cd
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
-
-# from https://dev-yakuza.github.io/en/django/jwt/
-JWT_AUTH = {
-    'JWT_SECRET_KEY': SECRET_KEY,
-    'JWT_ALGORITHM': 'HS256',
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': timedelta(days=7),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=28),
-}
-
-# from https://medium.com/swlh/django-rest-framework-with-react-jwt-authentication-part-1-a24b24fa83cd
-JWT_AUTH['JWT_RESPONSE_PAYLOAD_HANDLER'] = 'simple_rest.utils.custom_jwt_response_handler'
-REST_USE_JWT = True
 LOGIN_URL = 'login'
-###################################################### REST & JWT ######################################################
-########################################################################################################################
-
-##################################################################################################################
-###################################################### CORS ######################################################
-CORS_ALLOW_CREDENTIALS = True
-###################################################### CORS ######################################################
-##################################################################################################################
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,12 +79,6 @@ DATABASES = {
         'NAME': 'diffuse',
     }
 }
-if "/www/" in BASE_DIR:
-    from os import environ
-    DATABASES["default"]["USER"] = environ.get("diffuse_mongo_user")
-    DATABASES["default"]["PASSWORD"] = environ.get("diffuse_mongo_pw")
-    DATABASES["default"]["HOST"] = '127.0.0.1'
-    DATABASES["default"]["PORT"] = 27017
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -161,4 +113,5 @@ USE_L10N = True
 USE_TZ = True
 
 CSRF_COOKIE_NAME = "csrftoken"
+CORS_ALLOW_CREDENTIALS = True
 # CSRF_USE_SESSIONS = True
