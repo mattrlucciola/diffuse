@@ -9,5 +9,4 @@ LOCAL_APPS = [
     'user',
     'project',
     # 'comment',
-    # 'history',
 ]
