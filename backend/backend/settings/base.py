@@ -22,7 +22,7 @@ from .apps import EXTERNAL_APPS, LOCAL_APPS
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.dirname(path.abspath(__file__))))
-CLIENT_DIR = f"{path.dirname(BASE_DIR)}/client"
+CLIENT_DIR = f"{path.dirname(BASE_DIR)}/frontend"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
