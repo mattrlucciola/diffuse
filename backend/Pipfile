@@ -16,7 +16,7 @@ pillow = "*"
 django-rest-auth = {editable = true,version = "*"}
 six = "*"
 gunicorn = "*"
-django = "==2.2.8"
+django = "==2.2.13"
 
 [requires]
 python_version = "3.7"
